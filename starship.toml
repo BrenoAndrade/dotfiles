@@ -1,34 +1,41 @@
-# Get editor completions based on the config schema
+# get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
 # Inserts a blank line between shell prompts
-add_newline = true
+add_newline = false
 
-# Right prompt. You can customize this prompt to show information when the prompt is on the right side of the terminal.
+line_break.disabled = false
+
+# right prompt. You can customize this prompt to show information when the prompt is on the right side of the terminal.
 right_format="$kubernetes$aws${custom.aws_expires_gt_1h}${custom.aws_expires_lt_1h}"
 
-# The order of the elements in the prompt
-format = "$directory$all"
+# the order of the elements in the prompt
+format = "$character$directory$all"
+
+# the prompt character
+
+[character]
+format = "$symbol "
+error_symbol = "[λ](bold red)"
+success_symbol = "[λ](bold green)"
 
 [custom.aws_expires_gt_1h]
-description = "show the aws time of the session expiry"
-when = "[ $($HOME/.dotfiles/scripts/show_aws_session_expires_prompt.sh 3600) != \"\" ]"
-format = "[$symbol$output]($style)"
-style = "bold green"
+description = "Show aws session sso expiration time greater than 1h."
+when = '[ $($HOME/.dotfiles/scripts/show_aws_session_expires_prompt.sh 3600) != "" ]'
+format = "[$output]($style) $symbol"
 command = "$HOME/.dotfiles/scripts/show_aws_session_expires_prompt.sh 3600"
+style = "bold green"
 
 [custom.aws_expires_lt_1h]
-description = "show the aws time of the session expiry"
-when = "[ $($HOME/.dotfiles/scripts/show_aws_session_expires_prompt.sh 0 3600) != \"\" ]"
-format = "[$symbol$output]($style)"
+description = "Show aws session sso expiration time less than 1h. This is a warning"
+when = '[ $($HOME/.dotfiles/scripts/show_aws_session_expires_prompt.sh 0 3600) != "" ]'
+format = "$symbol[$output]($style)"
 style = "bold red"
 command = "$HOME/.dotfiles/scripts/show_aws_session_expires_prompt.sh 0 3600"
 
 [aws]
-disabled = false
-symbol = ""
-style = "bold #ff9900"
-format = "aws [$symbol$profile(\\($region\\))]($style) "
+format = "on [$symbol$profile(\\($region\\))]($style) "
+style = "bold #FF9900" 
 
 [aws.profile_aliases]
 "corujaengi" = "sandbox"
@@ -38,20 +45,20 @@ format = "aws [$symbol$profile(\\($region\\))]($style) "
 read_only = " 󰌾"
 
 [kubernetes]
-symbol = ""
 disabled = false
-format = "k8s [$symbol$context(\\($namespace\\))]($style) "
-style = "bold #326CE5"
-
-[[kubernetes.contexts]]
-context_pattern = "prod"
-style = "bold red"
+symbol = "⎈ "
+format = "[$symbol$context(\\($namespace\\))]($style) "
+style = "#326CE5 bold"
 
 [gcloud]
 disabled = true
 
-[character]
-disabled = true 
+[cmd_duration]
+min_time = 100
+show_milliseconds = true
+min_time_to_notify = 10000
+show_notifications = true
+style = "bold yellow"
 
 [battery]
 disabled = true
@@ -133,7 +140,6 @@ symbol = " "
 
 [nodejs]
 symbol = " "
-not_capable_style = "bold red"
 
 [ocaml]
 symbol = " "

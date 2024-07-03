@@ -1,4 +1,3 @@
-
 # starship prompt
 
 function set_win_title(){
@@ -10,25 +9,12 @@ export STARSHIP_CONFIG=~/.dotfiles/starship.toml
 
 eval "$(starship init zsh)"
 
-# load the aws profile
-
+# setup aws profile
 source "$HOME/.dotfiles/scripts/aws_current_profile.sh"
 
-# zinit
-# the following lines were added by compinstall
-
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
-fi
-
+# setup zinit
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-
 autoload -Uz _zinit
-
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # load a few important annexes, without Turbo
@@ -39,24 +25,56 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust \
+    Aloxaf/fzf-tab
+
+zinit light-mode for \
     zdharma/fast-syntax-highlighting \
     zsh-users/zsh-autosuggestions \
     zsh-users/zsh-completions \
     MichaelAquilina/zsh-auto-notify \
     MichaelAquilina/zsh-you-should-use
 
-### end of Zinit's installer chunk
+# setup fzf
+source "$HOME/.dotfiles/fzf.zsh"
 
 # setup zsh plugins
-
 plugins=(
-    fzf
+    # fzf
+    # fzf-tab
     git 
     asdf 
+    docker
+    terraform
     zsh-kubectl-prompt
+    kubectl
     brew
-    zsh-interactive-cd
     zsh-navigation-tools
     git-auto-fetch
+    bundler
+    dotenv
+    macos
+    rake
+    rbenv
+    ruby
+    aliases
+    alias-finder
+    per-directory-history
+    zsh-interactive-cd
+    docker-compose
+    jump
+    web-search
+    npm
+    yarn
+    node
+    thefuck
 )
 
+zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
+zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
+zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
+zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
+
+eval "$(thefuck --alias fk)"
+eval "$(zoxide init zsh)"
+
+alias cd="z"
