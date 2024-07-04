@@ -13,7 +13,6 @@ right_format="$kubernetes$aws${custom.aws_expires_gt_1h}${custom.aws_expires_lt_
 format = "$character$directory$all"
 
 # the prompt character
-
 [character]
 format = "$symbol "
 error_symbol = "[λ](bold red)"
