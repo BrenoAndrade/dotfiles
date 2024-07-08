@@ -2,11 +2,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # zsh config
-DISABLE_LS_COLORS="true"
-
-source <(fzf --zsh)
-
-zstyle ':omz:update' mode auto 
+zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 7
 
 # setup aws profile
@@ -30,50 +26,44 @@ theme="--color=fg:$color_fg,bg:$color_bg,hl:$color_hl --color=fg+:$color_fg_plus
 export FZF_DEFAULT_OPTS="$theme \
   --marker='❯' \
   --pointer='❯' \
+  --prompt='❯ ' \
   --scrollbar='│' \
   --cycle \
   --layout='reverse' \
-  --border='sharp' \
   --info='right' \
   --preview-window='right:50%,wrap' \
-  --height='100%' \
-  --min-height='100'" 
+  --height='100%'"
 
 export LESSOPEN='|$HOME/.dotfiles/scripts/lessfilter.sh %s'
-export FZF_COMPLETION_TRIGGER='**'
-export FZF_COMPLETION_OPTS="--tiebreak=chunk,index \
-    --cycle \
-    --no-hscroll \
-    --no-separator \
+export FZF_COMPLETION_OPTS=" --cycle \
     --ansi \
     --walker-skip='.git,node_modules' \
-    --walker='file,dir,follow,hidden' \
-    --preview-window='top:50%,wrap'"
+    --walker='file,dir,follow,hidden'"
 
-FZF_ALT_C_COMMAND= source <(fzf --zsh)
-
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' menu no
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-# Use ~~ as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER='~~'
 
-# Options to fzf command
-export FZF_COMPLETION_OPTS=$FZF_COMPLETION_OPTS' --border --info=inline --prompt="Search: "'
-
-zstyle ':fzf-tab:complete:z:*' fzf-preview 'less ${(Q)realpath}' 
+# options to fzf command
+zstyle ':fzf-tab:complete:z:*' fzf-preview 'less ${(Q)realpath}'
 zstyle ':fzf-tab:complete:eza:*' fzf-preview 'less ${(Q)realpath}'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'less ${(Q)realpath}'
 zstyle ':fzf-tab:*' continuous-trigger '/'
 zstyle ':fzf-tab:*' switch-group 'Left' 'Right'
-zstyle ':fzf-tab:*' fzf-preview 'less'
+zstyle ":fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*" fzf-flags "--preview-window=wrap" "${FZF_TAB_DEFAULT_FZF_FLAGS[@]}"
+zstyle ":fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*" fzf-preview "[[ -n \${(P)word} ]] && echo \${(P)word} || echo \<unset\>"
+
+# default fzf settings to apply globally
+FZF_TAB_DEFAULT_FZF_FLAGS=(
+  "--height=90%"
+  "--no-exact"
+)
+zstyle ":fzf-tab:*" fzf-flags "${FZF_TAB_DEFAULT_FZF_FLAGS[@]}"
 
 # autosuggest config
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
-ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
 # starship config
 export STARSHIP_CONFIG="$HOME/.dotfiles/starship.toml"
@@ -86,8 +76,8 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 zstyle ':omz:plugins:eza' 'dirs-first' yes
 zstyle ':omz:plugins:eza' 'git-status' yes
 zstyle ':omz:plugins:eza' 'header' yes
-zstyle ':omz:plugins:eza' 'show-group' yes 
-zstyle ':omz:plugins:eza' 'icons' yes
+zstyle ':omz:plugins:eza' 'show-group' yes
+zstyle ':omz:plugins:eza' 'icons' no
 zstyle ':omz:plugins:eza' 'size-prefix' si
 
 # alias-finder config

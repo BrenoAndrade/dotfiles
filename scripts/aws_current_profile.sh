@@ -6,6 +6,7 @@ if AWS_BIN=$(which aws); then
     # load the current profile from the file
     if [[ -f ~/.aws/current_profile ]]; then
         export AWS_PROFILE=$(cat ~/.aws/current_profile)
+        export AWS_BIN=$AWS_BIN
     fi
 
     function aws() {
@@ -19,3 +20,5 @@ if AWS_BIN=$(which aws); then
         fi
     }
 fi
+
+export PATH="$PATH:/opt/homebrew/bin"

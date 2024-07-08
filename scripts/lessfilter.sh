@@ -1,4 +1,4 @@
-#! /usr/bin/env sh
+#! /bin/zsh
 
 mime=$(file -bL --mime-type "$1")
 category=${mime%%/*}
@@ -22,7 +22,3 @@ case $kind in
 		lesspipe.sh "$1" | bat --color=always
 		;;
 esac
-
-_fzf_complete_less() {
-  fd --type f --hidden --follow --exclude .git | read | fzf --ansi --preview 'lessfilter.sh {}'
-}
