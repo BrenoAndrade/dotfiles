@@ -39,7 +39,7 @@ cmd="brew install \
     fd \
     ripgrep \
     pygments \
-    starship 
+    starship
 "
 eval $cmd
 
@@ -48,3 +48,4 @@ echo "installing oh-my-zsh plugins with git"
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
 git clone https://github.com/Aloxaf/fzf-tab $ZSH_CUSTOM/plugins/fzf-tab
+git clone https://github.com/bigH/git-fuzzy.git $ZSH_CUSTOM/plugins/git-fuzzy

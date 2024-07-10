@@ -58,7 +58,6 @@ zstyle ":fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 # default fzf settings to apply globally
 FZF_TAB_DEFAULT_FZF_FLAGS=(
   "--height=90%"
-  "--no-exact"
 )
 zstyle ":fzf-tab:*" fzf-flags "${FZF_TAB_DEFAULT_FZF_FLAGS[@]}"
 
@@ -93,7 +92,7 @@ GIT_AUTO_FETCH_INTERVAL=1200
 alias cd="z"
 
 # fpath is used by zsh to find functions and completions
-fpath+="$ZSH_CUSTOM/zsh-completions/src"
+fpath+="$ZSH_CUSTOM/plugins/zsh-completions/src"
 
 plugins=(
   alias-finder

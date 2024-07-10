@@ -81,4 +81,4 @@ symbol = "󰏗 "
 symbol = "[⬢](bold green) "
 
 [golang]
-symbol = "\uF8D0 a"
+symbol = "[go](bold cyan) "
