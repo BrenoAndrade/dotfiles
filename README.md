@@ -2,7 +2,9 @@
 
 Welcome to my ever-evolving dotfiles! Tailored for MacOS but with Linux compatibility on the horizon, these configurations streamline my workflow.
 
+<p align="center">
 ![Preview](https://github.com/BrenoAndrade/dotfiles/assets/16777941/28d7cc05-24c0-4b17-a01d-3c4288293961)
+</p>
 
 ## Table of Contents
 - [Features](#features)
