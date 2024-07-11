@@ -25,9 +25,14 @@ Clone the repo and run the setup script to get started.
 ### MacOS
 
 ```bash
+# clone the repo
 git clone https://github.com/brenoandrade/.dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-./setup/macos.sh
+
+# run setup script
+./.dotfiles/setup/macos.sh
+
+# register .zsh in .zshrc
+echo "source $HOME/.dotfiles/.zsh >> $HOME/.zshrc"
 ```
 
 The setup script will symlink the dotfiles to your home directory and install Homebrew along with essential packages.
