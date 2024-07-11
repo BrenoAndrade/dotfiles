@@ -8,6 +8,8 @@ This repository contains my dotfiles. It is a work in progress and it is constan
 
 ## Features
 
+![preview](https://github.com/BrenoAndrade/dotfiles/assets/16777941/28d7cc05-24c0-4b17-a01d-3c4288293961)
+
 - **Shell**: I use Zsh as my shell. I have a custom theme that I created. I use Oh My Zsh to manage my Zsh configuration.
 - **Prompt**: I use Starship as my shell prompt, which is a minimal, fast, and customizable prompt.
 - **Completion**: I use Zsh completions for some commands, like `git`, `docker`, `kubectl`, `helm`, among others.
