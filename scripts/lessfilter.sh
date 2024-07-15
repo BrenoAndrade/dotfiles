@@ -1,4 +1,3 @@
-#! /bin/zsh
 
 mime=$(file -bL --mime-type "$1")
 category=${mime%%/*}
