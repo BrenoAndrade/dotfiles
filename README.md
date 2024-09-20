@@ -28,7 +28,7 @@ Clone the repo and run the setup script to get started.
 
 ```bash
 # clone the repo
-git clone https://github.com/brenoandrade/.dotfiles.git ~/.dotfiles
+git clone https://github.com/brenoandrade/dotfiles.git ~/.dotfiles
 
 # run setup script
 ./.dotfiles/setup/macos.sh

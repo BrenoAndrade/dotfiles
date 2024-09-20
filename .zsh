@@ -103,7 +103,7 @@ plugins=(
   common-aliases
   docker
   eza
-  fd
+  # fd
   gcloud
   git
   git-auto-fetch

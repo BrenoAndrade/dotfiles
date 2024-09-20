@@ -4,6 +4,12 @@ echo "checking if homebrew is installed"
 if test ! $(which brew); then
     echo "installing homebrew"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    echo "adding homebrew to path"
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
+
+    echo "sourcing zshrc"
+    source ~/.zshrc
 fi
 
 echo "checking if zsh is installed"
@@ -31,6 +37,8 @@ fi
 
 echo "installing homebrew packages"
 cmd="brew install \
+    eza \
+    zoxide \
     lesspipe \
     exiftool \
     chafa \
@@ -50,3 +58,19 @@ git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-c
 git clone https://github.com/Aloxaf/fzf-tab $ZSH_CUSTOM/plugins/fzf-tab
 git clone https://github.com/bigH/git-fuzzy.git $ZSH_CUSTOM/plugins/git-fuzzy
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+
+echo "installing common command line tools"
+
+cmd="brew install \
+    awscli \
+    asdf
+"
+eval $cmd
+
+# TODO: add asdf plugins
+# echo "installing asdf plugins"
+# asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+# asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+# . ~/.asdf/plugins/golang/set-env.zsh
+
+rm -f ~/.zcompdump; compinit  # clear zsh completion cache
