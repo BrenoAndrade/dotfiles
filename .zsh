@@ -103,7 +103,6 @@ plugins=(
   common-aliases
   docker
   eza
-  # fd
   gcloud
   git
   git-auto-fetch
@@ -125,5 +124,15 @@ plugins=(
   fzf
   fzf-tab
 )
+
+# for all version golang packages and binaries
+all_versions=$(asdf list golang)
+for go_version in $all_versions; do
+  export PATH="${PATH}:$(asdf where golang $go_version)/bin"
+done
+
+export GOPATH=$(asdf where golang)/packages
+export GOROOT=$(asdf where golang)/go
+export PATH="${PATH}:$(go env GOPATH)/bin"
 
 source "$ZSH/oh-my-zsh.sh"

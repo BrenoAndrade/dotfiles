@@ -47,6 +47,8 @@ cmd="brew install \
     fd \
     ripgrep \
     pygments \
+    kubectl \
+    kubectx \
     starship
 "
 eval $cmd
@@ -63,7 +65,8 @@ echo "installing common command line tools"
 
 cmd="brew install \
     awscli \
-    asdf
+    asdf \
+    htop
 "
 eval $cmd
 
