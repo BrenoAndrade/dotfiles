@@ -8,6 +8,9 @@ zstyle ':omz:update' frequency 7
 # setup aws profile
 source "$HOME/.dotfiles/scripts/aws_current_profile.sh"
 
+# setup deploy sandbox
+source "$HOME/.dotfiles/scripts/estrategiahq_deploy_sandbox.sh"
+
 # fzf config
 color_fg="-1"
 color_bg="-1"
